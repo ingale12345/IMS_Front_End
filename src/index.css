@@ -1,13 +1,77 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+} */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap");
+.font-nunito {
+  font-family: "Nunito", sans-serif;
+}
+
+.paper-window {
+  scrollbar-width: 0;
+}
+.paper-window::-webkit-scrollbar {
+  display: none;
+}
+.pop-up {
+  opacity: 0;
+  transform: scale(0);
+  animation: popup 1s cubic-bezier(0.22, 0.27, 0.36, 1.19) forwards;
+}
+
+@keyframes popup {
+  85% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.slide-down {
+  opacity: 0;
+  transform: translateY(-72px);
+  animation: slide-down 1s cubic-bezier(0.22, 0.27, 0.36, 1.19) forwards;
+}
+@keyframes slide-down {
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.slide-l-r {
+  opacity: 0;
+  transform: translateX(-300px);
+  animation: slide-left-right 1s cubic-bezier(0.22, 0.27, 0.36, 1.19) forwards;
+}
+@keyframes slide-left-right {
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.slide-r-l {
+  opacity: 0;
+  transform: translateX(300px);
+  animation: slide-right-left 1s cubic-bezier(0.22, 0.27, 0.36, 1.19) forwards;
+}
+@keyframes slide-right-left {
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }

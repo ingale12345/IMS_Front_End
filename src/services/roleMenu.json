@@ -1,0 +1,48 @@
+{
+  "admin": [
+    {
+      "name": "CATEGORIES",
+      "path": "categories"
+    },
+    {
+      "name": "ITEM CLASSES",
+      "path": "itemsClasses"
+    },
+    {
+      "name": "ITEMS",
+      "path": "items"
+    },
+    {
+      "name": "USERS",
+      "path": "users"
+    }
+  ],
+  "customer": [
+    {
+      "name": "SHOPS",
+      "path": "shops"
+    },
+    {
+      "name": "CART",
+      "path": "cart"
+    },
+    {
+      "name": "ORDERS",
+      "path": "orders"
+    }
+  ],
+  "shopkeeper": [
+    {
+      "name": "SHOP ITEMS",
+      "path": "shopItems"
+    },
+    {
+      "name": "REQUISITION",
+      "path": "requisitions"
+    },
+    {
+      "name": "SHOPS",
+      "path": "shopkeeperShops"
+    }
+  ]
+}
