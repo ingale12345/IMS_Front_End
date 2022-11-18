@@ -7,6 +7,7 @@ import {
   getAllCategories,
   searchCategories,
 } from "../../actions/categoriesAction";
+import Pagination from "../common/Pagination";
 function Categories() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,7 +15,10 @@ function Categories() {
   }, []);
   const categories = useSelector((state) => state.categoriesReducer.categories);
   const handleDelete = (categoryId) => {
-    dispatch(deleteCategory(categoryId));
+    const value = window.confirm("Do you Want to Delete category");
+    if (value) {
+      dispatch(deleteCategory(categoryId));
+    }
   };
   const handleSearchData = (data) => {
     data = data.trim();
@@ -30,7 +34,9 @@ function Categories() {
         }}
         className=" grid"
       >
-        <div className=" border-r-2">demo</div>
+        <div className=" border-r-2 flex justify-center">
+          {/* <Pagination itemsCount={20} pageSize={5} currentPage={1} /> */}
+        </div>
         <div className=" flex p-5 gap-x-8 overflow-x-auto w-full flex-wrap">
           {categories.length === 0
             ? "categories not found"

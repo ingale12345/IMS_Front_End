@@ -26,7 +26,7 @@ function InvoiceRequisitionDetails(props) {
   return !requisition ? (
     ""
   ) : (
-    <div className="bg-[#FAFAFA] flex font-nunito font-bold overflow-clip flex-col mb-2 rounded-lg w-full h-16">
+    <div className="bg-[#FAFAFA] cursor-pointer flex font-nunito font-bold overflow-clip flex-col mb-2 rounded-lg w-full h-16">
       <div className="w-full  ">
         <span className="ml-3 text-[#57B2BA]">
           {itemClass?.name} ({item?.name})

@@ -5,12 +5,14 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import firstImage from "../images/mast.jpg";
 import { userLogin } from "../actions/loginAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
 import RegisterForm from "./RegisterForm";
+import ForgotPassword from "./common/ForgotPassword";
 
 const schema = yup.object().shape({
   email: yup.string().required("Email is required field").email(),
@@ -20,6 +22,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPopUp, setShowPopUp] = useState(false);
+  const [forgotPasswordForm, setForgotPasswordForm] = useState(false);
   const {
     register,
     handleSubmit,
@@ -55,7 +58,7 @@ const Login = () => {
   return (
     <div className="flex justify-center   items-center h-screen bg-gradient-to-r from-[#8ED89E] via-[#5DBFB0] to-[#58B4B9]">
       <div
-        className={`w-full h-screen p-10  absolute flex justify-center items-center top-0 left-0 bg-gray-500/60 ${
+        className={`w-full h-screen p-10   absolute flex justify-center items-center top-0 left-0 bg-gray-500/60 ${
           showPopUp ? "block" : "hidden"
         }`}
         style={{
@@ -64,8 +67,21 @@ const Login = () => {
       >
         <RegisterForm showPopUp={showPopUp} setShowPopUp={setShowPopUp} />
       </div>
+      <div
+        className={`w-full h-screen p-10  absolute flex justify-center items-center top-0 left-0 bg-gray-500/60 ${
+          forgotPasswordForm ? "block" : "hidden"
+        }`}
+        style={{
+          zIndex: "1",
+        }}
+      >
+        <ForgotPassword
+          forgotPasswordForm={forgotPasswordForm}
+          setForgotPasswordForm={setForgotPasswordForm}
+        />
+      </div>
 
-      <div className="h-[85%] w-[75%] bg-white  shadow-slate-600 rounded-md drop-shadow-[0_2px_10px_#333] bg-center bg-contain">
+      <div className="h-[85%] w-[75%] bg-white   shadow-slate-600 rounded-md drop-shadow-[0_2px_10px_#333] bg-center bg-cover">
         <div className="w-full h-20 flex justify-between items-center">
           <div
             style={{
@@ -76,12 +92,18 @@ const Login = () => {
             className=" w-48 h-full bg-contain"
           ></div>
           <div className="mx-10 w-32 flex justify-between xs:text-xs sm:text-sm">
-            <a href="/" className="italic">
+            <Link
+              to="/"
+              className="italic font-bold text-black  hover:text-green-500"
+            >
               ABOUT US
-            </a>
-            <a href="/login" className="font-bold italic text-[#59B6BC]">
+            </Link>
+            <Link
+              href="/login"
+              className="font-bold italic cursor-not-allowed text-[#59B6BC]"
+            >
               LOGIN
-            </a>
+            </Link>
           </div>
         </div>
         <div className="w-full h-[86%] flex justify-center ">
@@ -90,7 +112,7 @@ const Login = () => {
               boxShadow: "0 10px 30px grey",
               gridTemplateRows: "40% 60%",
             }}
-            className="w-[32%] h-[95%] bg-[#58B4B9] rounded-xl grid grid-rows-2 pop-up"
+            className="w-[32%] h-[95%] bg-[#58B4B9] rounded-xl grid grid-rows-2 "
           >
             <div className="my-2 flex-col  text-white items-center justify-center">
               <div
@@ -164,6 +186,9 @@ const Login = () => {
                 <Link
                   className=" block pt-8 text-center text-[#5046AF] font-bold text-sm"
                   to={"#"}
+                  onClick={() => {
+                    setForgotPasswordForm((prev) => !prev);
+                  }}
                 >
                   Forgot Password ?
                 </Link>

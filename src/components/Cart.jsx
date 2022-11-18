@@ -38,13 +38,19 @@ function Cart() {
   const shops = useSelector((state) => state.shopsReducer.shops);
 
   const removeRequisition = (requisitionId) => {
-    dispatch(deleteRequisition(requisitionId));
-    removeRequisitionMessage();
+    const value = window.confirm("Do you want to remove this Item from Cart");
+    if (value) {
+      dispatch(deleteRequisition(requisitionId));
+      removeRequisitionMessage();
+    }
   };
   const handlePlaceOrder = (customerRequisitions) => {
-    customerRequisitions.map((cr) => {
-      dispatch(updateRequisitionStatus(cr._id, { status: "placed" }));
-    });
+    const value = window.confirm("Do you want to Place this order");
+    if (value) {
+      customerRequisitions.map((cr) => {
+        dispatch(updateRequisitionStatus(cr._id, { status: "placed" }));
+      });
+    }
   };
   return (
     <div>

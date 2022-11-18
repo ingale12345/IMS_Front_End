@@ -1,5 +1,6 @@
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
+export const GENERATE_OTP = "GENERATE_OTP";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const DELETE_USER = "DELETE_USER";

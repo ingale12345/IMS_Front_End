@@ -30,7 +30,10 @@ function Items() {
   });
 
   const handleDelete = (itemId) => {
-    dispatch(deleteItem(itemId));
+    const value = window.confirm("Do you Want to Delete this Item");
+    if (value) {
+      dispatch(deleteItem(itemId));
+    }
   };
   const handleSearchData = (data) => {
     data = data.trim();
@@ -46,7 +49,7 @@ function Items() {
         }}
         className=" grid"
       >
-        <div className=" border-r-2">demo</div>
+        <div className=" border-r-2"></div>
         <div className=" flex flex-col p-5 gap-8 overflow-y-auto">
           {itemClasses.map((itemClass) => (
             <ItemClassForItems

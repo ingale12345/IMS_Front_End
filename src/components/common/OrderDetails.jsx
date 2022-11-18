@@ -48,9 +48,9 @@ function OrderDetails(props) {
           const shopItem = shopItems.find(
             (shopItem) => shopItem._id === cr.shopItem
           );
-          const item = items.find((item) => item._id === shopItem.item);
+          const item = items.find((item) => item._id === shopItem?.item);
           const itemClass = itemClasses.find((ic) => {
-            return ic._id === item.itemClass;
+            return ic._id === item?.itemClass;
           });
           // total = +total + +cr.amount * +shopItem.price;
           total = total + +cr.requiredQuntity.amount * +shopItem.price;

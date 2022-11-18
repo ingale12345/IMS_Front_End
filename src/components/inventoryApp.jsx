@@ -11,7 +11,7 @@ function InventoryApp() {
           backgroundImage: `url(${firstImage})`,
           backgroundRepeat: "no-repeat",
         }}
-        className="h-[85%] w-[70%] bg-white shadow-slate-600 rounded-md drop-shadow-[0_2px_10px_#333] bg-center bg-contain"
+        className="h-[85%] w-[75%] bg-white shadow-slate-600 rounded-md drop-shadow-[0_2px_10px_#333] bg-center bg-contain"
       >
         <div className="w-full h-20 flex justify-between items-center">
           <div
@@ -23,10 +23,16 @@ function InventoryApp() {
             className=" w-48 h-full bg-contain"
           ></div>
           <div className="mx-10 w-32 flex justify-between xs:text-xs sm:text-sm">
-            <Link to="/" className="font-bold italic text-[#59B6BC]">
+            <Link
+              to="/"
+              className=" font-bold italic text-[#59B6BC] cursor-not-allowed  "
+            >
               ABOUT US
             </Link>
-            <Link to="/login" className="italic">
+            <Link
+              to="/login"
+              className=" font-bold italic text-black hover:text-green-500"
+            >
               LOGIN
             </Link>
           </div>

@@ -73,7 +73,11 @@ function CategoryForm(props) {
           <span>{errors.name?.message}</span>
           <div className="flex items-center gap-3 mt-2">
             <div className="bg-red-100 rounded-lg w-16 h-16"></div>
-            <input {...register("profile")} type="file" />
+            <input
+              {...register("profile")}
+              type="file"
+              accept="image/png, image/gif, image/jpeg"
+            />
           </div>
           <div className="flex justify-end  mt-3">
             <span

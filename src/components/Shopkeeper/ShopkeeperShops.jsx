@@ -19,7 +19,10 @@ function ShopkeeperShops() {
     dispatch(searchShops(data));
   };
   const handleDeleteShop = (shopId) => {
-    dispatch(deleteShop(shopId));
+    const value = window.confirm("Do you want to delete this Shop");
+    if (value) {
+      dispatch(deleteShop(shopId));
+    }
   };
   return (
     <div>

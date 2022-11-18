@@ -3,7 +3,9 @@ function OrderShopItem(props) {
   const { customerRequisition, removeRequisition, shopItem, item, itemClass } =
     props;
 
-  return (
+  return !item ? (
+    ""
+  ) : (
     <div className="flex justify-between">
       <div className=" font-semibold">
         <span className="text-[#5dbec7]">

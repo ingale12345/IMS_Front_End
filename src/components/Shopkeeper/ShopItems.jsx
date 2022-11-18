@@ -45,14 +45,17 @@ function ShopItems() {
   };
 
   const handleDeleteShopItem = (data) => {
-    dispatch(
-      deleteShopItem(
-        shopItems.find(
-          (shopItem) =>
-            shopItem.shop === data.shopId && shopItem.item === data.itemId
-        )._id
-      )
-    );
+    const value = window.confirm("Do you Want to Delete this Shop Item");
+    if (value) {
+      dispatch(
+        deleteShopItem(
+          shopItems.find(
+            (shopItem) =>
+              shopItem.shop === data.shopId && shopItem.item === data.itemId
+          )._id
+        )
+      );
+    }
   };
 
   return (

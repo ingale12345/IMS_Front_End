@@ -77,6 +77,7 @@ function RegisterForm(props) {
               className="h-8 w-full  rounded-md pl-3 border-gray-500 border-2"
               type="email"
               placeholder="Email"
+              id="email"
             />
             <p>{errors.email?.message}</p>
           </div>
@@ -133,7 +134,7 @@ function RegisterForm(props) {
             <p>{errors.role?.message}</p>
           </div>
           <div className="flex items-center justify-center">
-            <input {...register("profile")} type="file" name="profile" id="" />
+            <input {...register("profile")} type="file" name="profile" />
           </div>
         </div>
 

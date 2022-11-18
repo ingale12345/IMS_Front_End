@@ -29,7 +29,7 @@ function Category(props) {
         className=" h-1/3 grid w-full"
         style={{ gridTemplateRows: "40% 60%" }}
       >
-        <span className=" text-sm pl-5 font-semibold bg-white">
+        <span className=" text-sm pl-5 font-semibold  bg-white">
           {categoryName}
         </span>
         <div
@@ -46,7 +46,7 @@ function Category(props) {
             onClick={() => {
               setShowPopUp((prev) => !prev);
             }}
-            className="bg-[#57B2BA] w-full text-sm flex items-center pl-3"
+            className="bg-[#57B2BA] w-full text-sm text-white flex items-center pl-3"
           >
             Edit
           </span>
