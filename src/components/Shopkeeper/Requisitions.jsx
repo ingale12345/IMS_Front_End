@@ -64,7 +64,7 @@ function Requisitions() {
               <span className="flex ml-4 gap-2  items-center font-bold font-nunito">
                 <input
                   onClick={(e) => handleStatusClick(e.target.value)}
-                  className="accent-[#59B6BE] cursor-pointer  h-4 w-4"
+                  className="accent-[#166d65] h-4 w-4 cursor-pointer"
                   type="radio"
                   value={""}
                   defaultChecked
@@ -77,7 +77,7 @@ function Requisitions() {
               <span className="flex ml-4 gap-2  items-center font-bold font-nunito">
                 <input
                   onClick={(e) => handleStatusClick(e.target.value)}
-                  className="accent-[#59B6BE] cursor-pointer  h-4 w-4"
+                  className="accent-[#166d65] cursor-pointer  h-4 w-4"
                   type="radio"
                   value={"placed"}
                   name="status"
@@ -88,7 +88,7 @@ function Requisitions() {
               <span className="flex ml-4 gap-2  items-center font-bold font-nunito">
                 <input
                   onClick={(e) => handleStatusClick(e.target.value)}
-                  className="accent-[#59B6BE] cursor-pointer  h-4 w-4"
+                  className="accent-[#166d65] cursor-pointer  h-4 w-4"
                   type="radio"
                   value={"dispatched"}
                   name="status"
@@ -99,7 +99,7 @@ function Requisitions() {
               <span className="flex ml-4 gap-2  items-center font-bold font-nunito">
                 <input
                   onClick={(e) => handleStatusClick(e.target.value)}
-                  className="accent-[#59B6BE] cursor-pointer  h-4 w-4"
+                  className="accent-[#166d65] cursor-pointer  h-4 w-4"
                   type="radio"
                   value={"cancelled"}
                   name="status"

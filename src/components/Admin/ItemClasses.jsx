@@ -20,7 +20,11 @@ function ItemClasses() {
 
   const handleDelete = (itemClassId) => {
     // console.log(itemClassId);
-    dispatch(deleteItemClass(itemClassId));
+
+    const value = window.confirm("Do you Want to Delete this Item Class");
+    if (value) {
+      dispatch(deleteItemClass(itemClassId));
+    }
   };
   const handleSearchData = (data) => {
     data = data.trim();
@@ -36,7 +40,7 @@ function ItemClasses() {
         }}
         className="grid"
       >
-        <div className=" border-r-2">demo</div>
+        <div className=" border-r-2"></div>
         <div className=" flex p-5 gap-8 flex-wrap overflow-y-auto paper-window">
           {itemClasses.length === 0
             ? "Item Classes Not found"

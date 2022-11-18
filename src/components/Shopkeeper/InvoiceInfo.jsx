@@ -42,9 +42,12 @@ function InvoiceInfo(props) {
     });
   };
   const handleReject = ({ requisitions }) => {
-    requisitions.map((cr) => {
-      dispatch(updateRequisitionStatus(cr._id, { status: "cancelled" }));
-    });
+    const value = window.confirm("Do you want to reject this order");
+    if (value) {
+      requisitions.map((cr) => {
+        dispatch(updateRequisitionStatus(cr._id, { status: "cancelled" }));
+      });
+    }
   };
 
   return !selectedOrder ? (

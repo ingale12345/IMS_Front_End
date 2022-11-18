@@ -38,7 +38,7 @@ function Navbar() {
         }
         return window.btoa(binary);
       }
-      const data = _arrayBufferToBase64(user?.profile.image.data);
+      const data = _arrayBufferToBase64(user.profile?.image.data);
       setTimeout(() => {
         setImage(`data:${user.profile?.mimetype};base64,` + data);
       }, 100);

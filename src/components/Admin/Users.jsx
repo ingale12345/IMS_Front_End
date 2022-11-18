@@ -18,7 +18,10 @@ function Users() {
   let users = useSelector((state) => state.usersReducer.users);
   users = users.filter((user) => user.role !== "admin");
   const handleSoftDelete = (userId) => {
-    dispatch(deleteUser(userId));
+    const value = window.confirm("Do you Want to Delete this customer");
+    if (value) {
+      dispatch(deleteUser(userId));
+    }
   };
   const handleSearchData = (data) => {
     data = data.trim();

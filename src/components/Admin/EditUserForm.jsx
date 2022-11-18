@@ -168,7 +168,7 @@ const EditUserForm = ({ user, setShowPopUp, showPopUp }) => {
               htmlFor="isActive"
               className="ml-2 w-fit text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
             >
-              Soft Delete User
+              Active/Inactive <span>(Soft Delete User)</span>
             </label>
           </div>
         </div>

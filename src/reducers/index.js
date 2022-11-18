@@ -8,6 +8,8 @@ import { shopItemsReducer } from "./shopItemsReducer";
 import { requisitionsReducer } from "./requisitionsReducer";
 import { selectedOrderReducer } from "./selectOrderReducer";
 import { usersReducer } from "./usersReducer";
+import { otpReducer } from "./otpReducer";
+
 export default combineReducers({
   loginReducer,
   shopsReducer,
@@ -18,4 +20,5 @@ export default combineReducers({
   requisitionsReducer,
   usersReducer,
   selectedOrderReducer,
+  otpReducer,
 });
