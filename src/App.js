@@ -15,10 +15,10 @@ function App() {
     dispatch(loadLogin());
   }, []);
   return (
-    <>
+    <div className="select-none">
       <Outlet />
       <ToastContainer />
-    </>
+    </div>
   );
 }
 

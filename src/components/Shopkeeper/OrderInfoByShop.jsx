@@ -9,6 +9,10 @@ function OrderInfoByShop(props) {
   const customer = useSelector((state) => state.usersReducer.users).find(
     (customer) => customer._id === customerId
   );
+  const selectedOrder = useSelector(
+    (state) => state.selectedOrderReducer.selectedOrder
+  );
+
   useEffect(() => {
     if (customer?.profile) {
       function _arrayBufferToBase64(buffer) {
@@ -25,6 +29,15 @@ function OrderInfoByShop(props) {
       setImage(img);
     }
   }, [customer]);
+
+  // useEffect(() => {
+  //   if (selectedOrder?.requisitions) {
+  //     console.log(
+  //       selectedOrder.requisitions[0]._id === requisitionsOfCustomer[0]._id
+  //     );
+  //   }
+  // }, [selectedOrder]);
+
   const handleOrderClick = () => {
     dispatch({
       type: SET_SELECTED_ORDER,
@@ -34,10 +47,16 @@ function OrderInfoByShop(props) {
       },
     });
   };
+  // "border-[#57B2BA]"
   return (
     <div
       onClick={() => handleOrderClick()} //orderClick(customer, requisitionsOfCustomer)
-      className="h-20 cursor-pointer bg-[#FAFAFA] flex items-center flex-row rounded-xl border-2 gap-1 p-2 border-[#57B2BA]"
+      className={`h-20 cursor-pointer bg-[#FAFAFA] flex items-center flex-row rounded-xl border-4 gap-1 p-2  ${
+        selectedOrder.customer === customerId &&
+        selectedOrder.requisitions[0]._id === requisitionsOfCustomer[0]._id
+          ? "border-[#57B2BA]  bg-[#ebebeb] "
+          : "border-gray-300  bg-[#FAFAFA]"
+      }`}
     >
       <div
         id="image"
