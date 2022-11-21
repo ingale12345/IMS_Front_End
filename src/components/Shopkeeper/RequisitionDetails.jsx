@@ -5,7 +5,7 @@ import OrderInfoByShop from "./OrderInfoByShop";
 import { getAllUsers } from "../../actions/userAction";
 import { SET_SELECTED_ORDER } from "../../actions/actionTypes";
 function RequisitionDetails(props) {
-  const { requisitions, selectedShop, setSelectedShop } = props;
+  const { requisitions, selectedShop } = props;
   const dispatch = useDispatch();
   const customers = useSelector((state) => state.usersReducer.users).filter(
     (user) => user.role === "customer"
@@ -28,7 +28,6 @@ function RequisitionDetails(props) {
 
   useEffect(() => {
     if (Object.keys(customerRequisitions).length != 0) {
-      console.log("shop changed");
       if (Object.keys(selectedOrder).length === 0) {
         dispatch({
           type: SET_SELECTED_ORDER,

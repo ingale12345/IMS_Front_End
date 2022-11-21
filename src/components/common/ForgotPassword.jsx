@@ -23,7 +23,6 @@ function ForgotPassword(props) {
   const email = useSelector((state) => state.otpReducer.email);
   //   console.log(otpStatus);
   useEffect(() => {
-    console.log("checked");
     if (sec === 0) {
       dispatch({ type: GENERATE_OTP, payload: { email: "", otpStatus: "" } });
       setSendOTP(true);

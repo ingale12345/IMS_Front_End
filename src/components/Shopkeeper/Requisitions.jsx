@@ -116,6 +116,13 @@ function Requisitions() {
               selectedShop={selectedShop}
             />
             <div className="overflow-y-auto h-[413px] paper-window">
+              {requisitions.length === 0 ? (
+                <div className="text-center animate-bounce font-bold text-red-400">
+                  Orders not available for selected shop
+                </div>
+              ) : (
+                ""
+              )}
               {placedRequisitions.length === 0 ? (
                 ""
               ) : (
