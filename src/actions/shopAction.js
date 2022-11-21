@@ -62,3 +62,41 @@ export const deleteShop = (shopId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+//changes
+
+export const getAllCategoryOfShops = () => (dispatch) => {
+  axios
+    .get(apiEndPoint + "shopscategory/data")
+    .then((response) => {
+      dispatch({
+        type: actions.GET_ALL_CATEGORIES_OF_SHOPS,
+        payload: { categoriesOfShops: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const getAllShopsByCategory = (categoryId) => (dispatch) => {
+  axios
+    .post(apiEndPoint + "shopsbycategory", categoryId)
+    .then((response) => {
+      dispatch({
+        type: actions.GET_All_SHOPS_BY_CATEGORY,
+        payload: { shopsByCategory: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const getShopData = (shopId) => (dispatch) => {
+  axios
+    .post(apiEndPoint + "shopdata", { shopId })
+    .then((response) => {
+      dispatch({
+        type: actions.GET_SHOP_DATA,
+        payload: { shopData: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};

@@ -1,5 +1,10 @@
 import * as actions from "../actions/actionTypes";
-const initialState = { shops: [] };
+const initialState = {
+  shops: [],
+  categoriesOfShops: [],
+  shopsByCategory: [],
+  shopData: [],
+};
 export const shopsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.GET_ALL_SHOPS:
@@ -24,6 +29,16 @@ export const shopsReducer = (state = initialState, action) => {
       );
       return { ...state, shops: shopsAfterDelete };
 
+    //Changes
+
+    case actions.GET_ALL_CATEGORIES_OF_SHOPS:
+      return { ...state, categoriesOfShops: action.payload.categoriesOfShops };
+
+    case actions.GET_All_SHOPS_BY_CATEGORY:
+      return { ...state, shopsByCategory: action.payload.shopsByCategory };
+
+    case actions.GET_SHOP_DATA:
+      return { ...state, shopData: action.payload.shopData };
     default:
       return { ...state };
   }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "./common/Card";
-import GroceryImage from "../images/shopsImgs/wheatImage.PNG";
-import MedicalImage from "../images/shopsImgs/tabletsImg.PNG";
-import HardwareImage from "../images/shopsImgs/hardware.jpg";
 import CustomerSubMenu from "./common/CustomerSubMenu";
 import FilterBar from "./common/FilterBar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllShops } from "../actions/shopAction";
+import {
+  getAllCategoryOfShops,
+  getAllShopsByCategory,
+} from "../actions/shopAction";
 import { getAllCategories } from "../actions/categoriesAction";
 import ShopsByCategory from "./ShopsByCategory";
 import ItemsByShops from "./ItemsByShops";
@@ -14,28 +14,28 @@ function Shops() {
   const [clickedCard, setClickedCard] = useState("");
   const [details, setDetails] = useState("");
   const dispatch = useDispatch();
-  const shops = useSelector((state) => state.shopsReducer.shops);
+
   const categories = useSelector((state) => state.categoriesReducer.categories);
+  const allCategoriesOfShops = useSelector(
+    (state) => state.shopsReducer.categoriesOfShops
+  );
+  const shopsByCategory = useSelector(
+    (state) => state.shopsReducer.shopsByCategory
+  );
+
   useEffect(() => {
-    dispatch(getAllShops());
     dispatch(getAllCategories());
+    dispatch(getAllCategoryOfShops());
   }, []);
-  const getShopsByCategory = () => {
-    let cw = {};
-    categories.forEach((c) => {
-      cw[c._id] = [];
-      shops.forEach((shop) => {
-        if (shop.category === c._id) {
-          cw[c._id].push(shop);
-        }
-      });
-    });
-    return cw;
-  };
+
+  useEffect(() => {
+    dispatch(getAllShopsByCategory(details));
+  }, [details]);
+
   const handleShopClick = (categoryId) => {
     setDetails({ categoryId });
-    // console.log(categoryId);
   };
+
   const handleClickShop = (shopId) => {
     setDetails({ shopId });
   };
@@ -58,26 +58,16 @@ function Shops() {
           className=" grid"
         >
           <div id="categories" className="bg-slate-100 p-2 overflow-y-auto">
-            {categories.map((c) => {
-              const cats = getShopsByCategory();
-              if (cats[c._id].length !== 0) {
+            {categories.map((category) => {
+              if (allCategoriesOfShops[category._id]?.length !== 0) {
                 return (
                   <Card
-                    key={c._id}
+                    key={category._id}
                     clicked={clickedCard}
-                    categoryId={c._id}
-                    imgSrc={c.profile}
-                    // imgSrc={
-                    //   c.name === "grocery"
-                    //     ? GroceryImage
-                    //     : c.name === "hardware"
-                    //     ? HardwareImage
-                    //     : c.name === "medical"
-                    //     ? MedicalImage
-                    //     : ""
-                    // }
-                    category={c.name}
-                    shopsCount={cats[c._id].length}
+                    categoryId={category._id}
+                    imgSrc={category.profile}
+                    category={category.name}
+                    shopsCount={allCategoriesOfShops[category._id]?.length}
                     onClick={handleShopClick}
                   />
                 );
@@ -87,6 +77,7 @@ function Shops() {
 
           {details.categoryId ? (
             <ShopsByCategory
+              shopsByCategory={shopsByCategory}
               key={details.categoryId}
               categoryId={details.categoryId}
               handleClickShop={handleClickShop}

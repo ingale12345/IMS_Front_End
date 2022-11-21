@@ -3,10 +3,8 @@ import { useSelector } from "react-redux";
 import ImgSrc from "../images/shopsImgs/wheatImage.PNG";
 import ShopDetails from "./common/ShopDetails";
 function ShopsByCategory(props) {
-  const { categoryId, handleClickShop } = props;
-  const shops = useSelector((state) => state.shopsReducer.shops);
+  const { categoryId, handleClickShop,shopsByCategory } = props;
   const categories = useSelector((state) => state.categoriesReducer.categories);
-
   return (
     <div className="grid" style={{ gridTemplateRows: "5% 95%" }}>
       <div className="font-semibold  text-sm text-[#989898] pl-6">
@@ -17,8 +15,7 @@ function ShopsByCategory(props) {
         shops
       </div>
       <div className=" flex flex-wrap">
-        {shops.map((shop) => {
-          if (shop.category === categoryId) {
+        {shopsByCategory.map((shop) => {
             return (
               <ShopDetails
                 key={shop._id}
@@ -30,10 +27,8 @@ function ShopsByCategory(props) {
                 handleClickShop={handleClickShop}
               />
             );
-          }
         })}
-        {/* <ShopDetails />
-        <ShopDetails /> */}
+
       </div>
     </div>
   );

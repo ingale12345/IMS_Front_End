@@ -8,24 +8,26 @@ import {
 import { getAllShopItems } from "../../actions/shopItemsAction";
 import jwt_decode from "jwt-decode";
 function AddToCartButton(props) {
-  const { item, shopId } = props;
+  const { item, shopId, shopItems } = props;
   const dispatch = useDispatch();
-  const shopItems = useSelector((state) => state.shopItemsReducer.shopItems);
+  //const shopItems = useSelector((state) => state.shopItemsReducer.shopItems);
   const token = useSelector((state) => state.loginReducer.token);
   const requisitions = useSelector(
     (state) => state.requisitionsReducer.requisitions
   );
   useEffect(() => {
-    dispatch(getAllShopItems());
+    //dispatch(getAllShopItems());
     dispatch(getAllRequisitions());
   }, []);
 
   const shopItem = shopItems.filter(
     (si) => si.shop === shopId && si.item === item._id
   );
+
   let requisition = requisitions.filter((req) => {
-    return req.shopItem === shopItem[0]._id && req.status === "created";
+    return req.shopItem === shopItem[0]?._id && req.status === "created";
   });
+
   requisition = requisition[0];
 
   const updateRequiredQuantity = ({ reqId, updateValue }) => {
