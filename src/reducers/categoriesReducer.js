@@ -1,5 +1,8 @@
 import * as actions from "../actions/actionTypes";
-export const categoriesReducer = (state = { categories: [] }, action) => {
+export const categoriesReducer = (
+  state = { categories: [], count: 0 },
+  action
+) => {
   switch (action.type) {
     case actions.GET_ALL_CATEGORIES:
       return { ...state, categories: action.payload.categories };
@@ -20,6 +23,19 @@ export const categoriesReducer = (state = { categories: [] }, action) => {
         return c;
       });
       return { ...state, categories: updatedCategories };
+
+    case actions.COUNT_CATEGORY:
+      // console.log(action.payload.count);
+      return {
+        ...state,
+        count: +action.payload.count,
+      };
+
+    case actions.GET_PFS_CATEGORY:
+      return {
+        ...state,
+        categories: action.categories,
+      };
     default:
       return { ...state };
   }

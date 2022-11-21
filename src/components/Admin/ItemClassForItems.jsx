@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllItems } from "../../actions/itemsAction";
+import { countItem, getAllItems, getPFS } from "../../actions/itemsAction";
+import Pagination from "../common/Pagination";
 import ItemForm from "./ItemForm";
 import ShowImage from "./ShowImage";
 function ItemClassForItems(props) {
@@ -10,7 +11,9 @@ function ItemClassForItems(props) {
   const [EditClickItem, setEditClickItem] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllItems());
+    // dispatch(getAllItems());
+    
+    dispatch(countItem({ title: "" }));
   }, []);
   const items = useSelector((state) => state.itemsReducer.items);
   const newItems = items.filter((item) => item.itemClass === itemClass._id);
@@ -37,7 +40,6 @@ function ItemClassForItems(props) {
             {/* <div className="h-2/3 ">
               <img src={ImgSrc} alt="image" className="w-full object-cover" />
             </div> */}
-
             <ShowImage item={i} />
             <div
               className=" h-1/3 grid w-full"

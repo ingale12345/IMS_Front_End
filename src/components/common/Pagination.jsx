@@ -4,7 +4,8 @@ const Pagination = (props) => {
   //   console.log(itemsCount);
   const pages = _.range(1, Math.ceil(itemsCount / pageSize) + 1);
 
-  if (itemsCount <= pageSize) return;
+  // console.log(pages);
+  // if (itemsCount <= pageSize) return;
   return (
     <nav>
       <ul className=" w-8 flex justify-center  items-center gap-2 flex-col">

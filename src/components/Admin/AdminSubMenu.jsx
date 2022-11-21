@@ -28,7 +28,7 @@ function AdminSubMenu(props) {
             type="text"
             placeholder="Search"
             className="p-[2px] text-sm placeholder:text-sm pl-3 w-full outline-none focus:border-sky-300 border-solid-black "
-            onChange={(e) => searchData(e.target.value)}
+            onChange={(e) => searchData(e)}
           />
           <BiX className="mr-3 text-xl cursor-pointer" />
         </div>

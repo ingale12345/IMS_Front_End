@@ -80,3 +80,32 @@ export const deleteItem = (itemId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const countItem = (data) => {
+  return (dispatch) => {
+    axios
+      .post(apiEndPoint + "/count", data)
+      .then((response) => {
+        dispatch({
+          type: actions.COUTN_ITEM,
+          payload: { count: response.data },
+        });
+      })
+      .catch((err) => console.log(err.message));
+  };
+};
+
+export const getPFS = (data) => {
+  return (dispatch) => {
+    axios
+      .post(apiEndPoint + "/pfs", data)
+      .then((response) => {
+        // console.log("response.data", response.data);
+        dispatch({
+          type: actions.GET_PFS_ITEM,
+          items: response.data,
+        });
+      })
+      .catch((err) => console.log(err.message));
+  };
+};

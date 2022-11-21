@@ -1,5 +1,5 @@
 import * as actions from "../actions/actionTypes";
-export const usersReducer = (state = { users: [] }, action) => {
+export const usersReducer = (state = { users: [], count: 0 }, action) => {
   switch (action.type) {
     case actions.GET_ALL_USERS:
       return { ...state, users: action.payload.users };
@@ -28,6 +28,17 @@ export const usersReducer = (state = { users: [] }, action) => {
         return user;
       });
       return { ...state, users: updatedProfileUsers };
+
+    case actions.COUNT_USER:
+      return {
+        ...state,
+        count: +action.payload.count,
+      };
+    case actions.GET_PFS_USER:
+      return {
+        ...state,
+        users: action.users,
+      };
     default:
       return { ...state };
   }

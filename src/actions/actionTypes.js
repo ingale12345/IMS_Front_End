@@ -7,6 +7,8 @@ export const DELETE_USER = "DELETE_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
 export const ADD_USER = "ADD_USER";
+export const COUNT_USER = "COUNT_USER";
+export const GET_PFS_USER = "GET_PFS_USER";
 
 export const GET_ALL_SHOPS = "GET_ALL_SHOPS";
 export const GET_ALL_SHOPS_BY_CATEGORY = "GET_ALL_SHOPS_BY_CATEGORY";
@@ -18,16 +20,22 @@ export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const ADD_CATEGORY = "ADD_CATEGORY";
 export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
+export const COUNT_CATEGORY = "COUNT_CATEGORY";
+export const GET_PFS_CATEGORY = "GET_PFS_CATEGORY";
 
 export const GET_ALL_ITEM_CLASSES = "GET_ALL_ITEM_CLASSES";
 export const DELETE_ITEM_CLASS = "DELETE_ITEM_CLASS";
 export const ADD_ITEM_CLASS = "ADD_ITEM_CLASS";
 export const UPDATE_ITEM_CLASS = "UPDATE_ITEM_CLASS";
+export const COUNT_ITEM_CLASS = "COUNT_ITEM_CLASS";
+export const GET_PFS_ITEM_CLASS = "GET_PFS_ITEM_CLASS";
 
 export const GET_ALL_ITEMS = "GET_ALL_ITEMS";
 export const ADD_ITEM = "ADD_ITEM";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const UPDATE_ITEM = "UPDATE_ITEM";
+export const COUTN_ITEM = "COUTN_ITEM";
+export const GET_PFS_ITEM = "GET_PFS_ITEM";
 
 export const GET_ALL_SHOP_ITEMS = "GET_ALL_SHOP_ITEMS";
 export const DELETE_SHOP_ITEM = "DELETE_SHOP_ITEM";

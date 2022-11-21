@@ -73,3 +73,32 @@ export const deleteItemClass = (itemClassId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const countItemClass = (data) => {
+  return (dispatch) => {
+    axios
+      .post(apiEndPoint + "/count", data)
+      .then((response) => {
+        dispatch({
+          type: actions.COUNT_ITEM_CLASS,
+          payload: { count: response.data },
+        });
+      })
+      .catch((err) => console.log(err.message));
+  };
+};
+
+export const getPFS = (data) => {
+  return (dispatch) => {
+    axios
+      .post(apiEndPoint + "/pfs", data)
+      .then((response) => {
+        // console.log("response.data", response.data);
+        dispatch({
+          type: actions.GET_PFS_ITEM_CLASS,
+          itemClasses: response.data,
+        });
+      })
+      .catch((err) => console.log(err.message));
+  };
+};

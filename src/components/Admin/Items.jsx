@@ -1,15 +1,18 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllItemClasses } from "../../actions/itemClassesAction";
+
+import { countItem, getAllItems, getPFS } from "../../actions/itemsAction";
 import { deleteItem, searchItems } from "../../actions/itemsAction";
+
+import Pagination from "../common/Pagination";
 import AdminSubMenu from "./AdminSubMenu";
 import ItemClassForItems from "./ItemClassForItems";
 
 function Items() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllItemClasses());
+    dispatch(getPFS({ currentPage, pageSize, title }));
   }, []);
 
   const itemClasses = useSelector(
@@ -39,9 +42,41 @@ function Items() {
     data = data.trim();
     dispatch(searchItems(data));
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(3);
+  const [title, setTitle] = useState("");
+
+  const totalNoOfItems = useSelector((state) => state.itemsReducer.count);
+
+  const handlePageChange = (currentPage) => {
+    // console.log(currentPage);
+    setCurrentPage(currentPage);
+    const data = { currentPage, pageSize, title };
+    dispatch(getPFS(data));
+    dispatch(countItem({ title }));
+  };
+
+  const handleChange = (e) => {
+    let title = e.target.value.trim();
+    if (title.length === 0) {
+      setTitle("");
+    }
+    setCurrentPage(1);
+    setTitle(title);
+    dispatch(
+      getPFS({
+        currentPage: 1,
+        pageSize,
+        title,
+      })
+    );
+    dispatch(countItem({ title }));
+  };
+
   return (
     <div>
-      <AdminSubMenu searchData={handleSearchData} btnName="Add Item" />
+      <AdminSubMenu searchData={handleChange} btnName="Add Item" />
       <div
         style={{
           gridTemplateColumns: "15% 85%",
@@ -49,7 +84,15 @@ function Items() {
         }}
         className=" grid"
       >
-        <div className=" border-r-2"></div>
+        <div className=" border-r-2 flex justify-center">
+          {" "}
+          <Pagination
+            itemsCount={totalNoOfItems}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </div>
         <div className=" flex flex-col p-5 gap-8 overflow-y-auto">
           {itemClasses.map((itemClass) => (
             <ItemClassForItems

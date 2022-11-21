@@ -1,5 +1,5 @@
 import * as actions from "../actions/actionTypes";
-export const itemsReducer = (state = { items: [] }, action) => {
+export const itemsReducer = (state = { items: [], count: 0 }, action) => {
   switch (action.type) {
     case actions.GET_ALL_ITEMS:
       return { ...state, items: action.payload.items };
@@ -22,6 +22,16 @@ export const itemsReducer = (state = { items: [] }, action) => {
       return {
         ...state,
         items: updatedItems,
+      };
+    case actions.COUTN_ITEM:
+      return {
+        ...state,
+        count: +action.payload.count,
+      };
+    case actions.GET_PFS_ITEM:
+      return {
+        ...state,
+        items: action.items,
       };
     default:
       return { ...state };

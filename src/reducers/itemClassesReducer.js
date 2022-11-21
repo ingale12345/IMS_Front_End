@@ -1,5 +1,8 @@
 import * as actions from "../actions/actionTypes";
-export const itemClassesReducer = (state = { itemClasses: [] }, action) => {
+export const itemClassesReducer = (
+  state = { itemClasses: [], count: 0 },
+  action
+) => {
   switch (action.type) {
     case actions.GET_ALL_ITEM_CLASSES:
       return { ...state, itemClasses: action.payload.itemClasses };
@@ -22,6 +25,16 @@ export const itemClassesReducer = (state = { itemClasses: [] }, action) => {
       return {
         ...state,
         itemClasses: updatedItemClasses,
+      };
+    case actions.COUNT_ITEM_CLASS:
+      return {
+        ...state,
+        count: +action.payload.count,
+      };
+    case actions.GET_PFS_ITEM_CLASS:
+      return {
+        ...state,
+        itemClasses: action.itemClasses,
       };
     default:
       return { ...state };
