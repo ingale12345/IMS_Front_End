@@ -16,7 +16,6 @@ export const registerUser = (data) => (dispatch) => {
       }
     )
     .then((response) => {
-      console.log(response.data);
       dispatch({ type: actions.ADD_USER, payload: { user: response.data } });
     })
     .catch((err) => console.log(err));
@@ -26,7 +25,6 @@ export const generateOTP = (email) => (dispatch) => {
   axios
     .post(apiEndPoint + "generateOTP", { email })
     .then((response) => {
-      console.log(response.data);
       dispatch({
         type: actions.GENERATE_OTP,
         payload: {
@@ -41,7 +39,6 @@ export const validateOTP = (email, otp) => (dispatch) => {
   axios
     .post(apiEndPoint + "validateOTP", { email, otp })
     .then((response) => {
-      console.log(response.data);
       dispatch({
         type: actions.GENERATE_OTP,
         payload: {
@@ -59,7 +56,6 @@ export const changePassword = (email, password) => (dispatch) => {
       password,
     })
     .then((response) => {
-      console.log(response.data);
       dispatch({
         type: actions.GENERATE_OTP,
         payload: {
@@ -151,7 +147,6 @@ export const getPFS = (data) => {
     axios
       .post(apiEndPoint + "/pfs", data)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: actions.GET_PFS_USER,
           users: response.data,

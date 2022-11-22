@@ -46,7 +46,6 @@ function ItemForm(props) {
   const onSubmitHandler = (data) => {
     data = { ...data, profile: data.profile[0] };
     if (data.itemId) {
-      console.log(data);
       dispatch(updateItem(data));
     } else {
       dispatch(addItem(data));

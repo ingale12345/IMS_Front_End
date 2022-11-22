@@ -15,9 +15,13 @@ import User from "./User";
 
 function Users() {
   const dispatch = useDispatch();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(1);
+  const [title, setTitle] = useState("");
   useEffect(() => {
-    countUser({ title });
-    getPFS({ currentPage, pageSize, title });
+    dispatch(countUser({ title }));
+    dispatch(getPFS({ currentPage, pageSize, title }));
   }, []);
 
   let users = useSelector((state) => state.usersReducer.users);
@@ -33,12 +37,7 @@ function Users() {
     dispatch(searchUsers(data));
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(1);
-  const [title, setTitle] = useState("");
-
   const totalNoOfUsers = useSelector((state) => state.usersReducer.count);
-  console.log(totalNoOfUsers);
 
   const handlePageChange = (currentPage) => {
     // console.log(currentPage);
