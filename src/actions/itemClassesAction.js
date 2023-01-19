@@ -51,6 +51,18 @@ export const updateItemClass = (data) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getItemClassesByShopCategory = (shopId) => (dispatch) => {
+  axios
+    .get(apiEndPoint + "byShopCategory/" + shopId)
+    .then((response) => {
+      dispatch({
+        type: actions.GET_ALL_ITEM_CLASSES,
+        payload: { itemClasses: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 export const searchItemClasses = (searchValue) => (dispatch) => {
   axios
     .post(apiEndPoint + "search", { searchValue })

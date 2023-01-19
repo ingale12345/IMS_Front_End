@@ -13,6 +13,18 @@ export const getAllShopItems = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getShopItemsByShop = (shopId) => (dispatch) => {
+  axios
+    .get(apiEndPoint + "byShop/" + shopId)
+    .then((response) => {
+      dispatch({
+        type: actions.GET_ALL_SHOP_ITEMS,
+        payload: { shopItems: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 export const addShopItem = (data) => (dispatch) => {
   axios
     .post(apiEndPoint, data)

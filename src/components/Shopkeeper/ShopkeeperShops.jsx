@@ -4,25 +4,47 @@ import { useDispatch, useSelector } from "react-redux";
 import ShopkeeperSubMenu from "./ShopkeeperSubMenu";
 import Shop from "./Shop";
 import jwtDecode from "jwt-decode";
-import { deleteShop, searchShops } from "../../actions/shopAction";
-import { toast } from "react-toastify";
-
+import {
+  countShops,
+  deleteShop,
+  searchShops,
+  shopPFS,
+} from "../../actions/shopAction";
+import Pagination from "../common/Pagination";
+import { useState } from "react";
 function ShopkeeperShops() {
   const dispatch = useDispatch();
   const decoded = jwtDecode(useSelector((state) => state.loginReducer.token));
-  const shops = useSelector((state) => state.shopsReducer.shops).filter(
-    (shop) => shop.owner === decoded._id
-  );
+  const shops = useSelector((state) => state.shopsReducer.shops);
+  const totalNoOfShops = useSelector((state) => state.shopsReducer.count);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(2);
+  const [title, setTitle] = useState("");
+  const [owner, setOwner] = useState(decoded._id);
+
+  useEffect(() => {
+    dispatch(countShops({ title, owner }));
+    dispatch(shopPFS({ currentPage, pageSize, title, owner }));
+  }, []);
 
   const handleSearchData = (data) => {
     data = data.trim();
-    dispatch(searchShops(data));
+    setTitle(data);
+    setCurrentPage(1);
+    dispatch(countShops({ title: data, owner }));
+    dispatch(shopPFS({ currentPage: 1, pageSize, title: data, owner }));
   };
   const handleDeleteShop = (shopId) => {
     const value = window.confirm("Do you want to delete this Shop");
     if (value) {
       dispatch(deleteShop(shopId));
     }
+  };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    dispatch(countShops({ title, owner }));
+    dispatch(shopPFS({ currentPage: page, pageSize, title, owner }));
+    // console.log(page);
   };
   return (
     <div>
@@ -35,14 +57,24 @@ function ShopkeeperShops() {
         className=" grid"
       >
         <div className=" border-r-2"></div>
-        <div className=" flex flex-col p-5 gap-8 overflow-y-auto">
-          {shops.length === 0 ? (
-            <h1>shops Not Found</h1>
-          ) : (
-            shops.map((shop) => (
-              <Shop key={shop._id} shop={shop} onDelete={handleDeleteShop} />
-            ))
-          )}
+        <div style={{ gridTemplateRows: "80% 20%" }} className="grid">
+          <div className=" flex flex-col p-5 gap-8 overflow-y-auto">
+            {shops.length === 0 ? (
+              <h1>shops Not Found</h1>
+            ) : (
+              shops.map((shop) => (
+                <Shop key={shop._id} shop={shop} onDelete={handleDeleteShop} />
+              ))
+            )}
+          </div>
+          <div>
+            <Pagination
+              itemsCount={totalNoOfShops}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </div>
       </div>
     </div>

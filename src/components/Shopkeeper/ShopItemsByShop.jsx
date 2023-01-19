@@ -1,13 +1,20 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getShopById } from "../../actions/shopAction";
 
 import ItemsByItemClass from "./ItemsByItemClass";
 
 function ShopItemsByShop(props) {
+  const dispatch = useDispatch();
   const { shopItems, shopId, onShopItemDelete } = props;
   const items = useSelector((state) => state.itemsReducer.items);
-  const shops = useSelector((state) => state.shopsReducer.shops);
-  const shop = shops.find((shop) => shop._id === shopId);
+  const shop = useSelector((state) => state.shopsReducer.shop);
+
+  useEffect(() => {
+    if (shopId === "") return;
+    dispatch(getShopById(shopId));
+  }, [shopId]);
+
   let itemClasses = useSelector(
     (state) => state.itemClassesReducer.itemClasses
   );

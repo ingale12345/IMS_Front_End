@@ -39,6 +39,55 @@ export const updateShop = (data) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const shopOwnerShops = (owner) => (dispatch) => {
+  axios
+    .get(apiEndPoint + "byShopOwner/" + owner)
+    .then((response) => {
+      dispatch({
+        type: actions.GET_ALL_SHOPS,
+        payload: { shops: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const getShopById = (shopId) => (dispatch) => {
+  axios
+    .get(apiEndPoint + shopId)
+    .then((response) => {
+      dispatch({
+        type: actions.GET_SHOP_BY_ID,
+        payload: { shop: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const countShops = (data) => (dispatch) => {
+  axios
+    .post(apiEndPoint + "count", data)
+    .then((response) => {
+      // console.log(response.data);
+      dispatch({
+        type: actions.COUNT_SHOPS,
+        payload: { count: +response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const shopPFS = (data) => (dispatch) => {
+  axios
+    .post(apiEndPoint + "PFS", data)
+    .then((response) => {
+      dispatch({
+        type: actions.GET_ALL_SHOPS,
+        payload: { shops: response.data },
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 export const searchShops = (searchValue) => (dispatch) => {
   axios
     .post(apiEndPoint + "search", { searchValue })

@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getShopItemsByShop } from "../../actions/shopItemsAction";
 import ShopItemDetails from "./ShopItemDetails";
 function ItemList(props) {
+  const dispatch = useDispatch();
   let { itemClass, register, shop, setShowAddButton } = props;
   const [showItemInfoPopUp, setShowItemInfoPopUp] = useState(false);
   let shopItems = useSelector((state) => state.shopItemsReducer.shopItems);
@@ -12,6 +14,13 @@ function ItemList(props) {
     useSelector((state) => state.itemsReducer.items)
   );
   const [selectedItem, setSelectedItem] = useState({});
+
+  useEffect(() => {
+    if (!shop) return;
+    // console.log("Welcome");
+    dispatch(getShopItemsByShop(shop._id));
+  }, [shop]);
+
   useEffect(() => {
     shopItems = shopItems.filter((shopItem) => shopItem.shop === shop._id);
     setItems(

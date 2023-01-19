@@ -5,8 +5,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllItemClasses } from "../../actions/itemClassesAction";
 import { getAllItems, searchItems } from "../../actions/itemsAction";
-import { getAllShops } from "../../actions/shopAction";
-import { deleteShopItem, getAllShopItems } from "../../actions/shopItemsAction";
+import { getAllShops, shopOwnerShops } from "../../actions/shopAction";
+import {
+  deleteShopItem,
+  getAllShopItems,
+  getShopItemsByShop,
+} from "../../actions/shopItemsAction";
 import ShopItemsByShop from "./ShopItemsByShop";
 import ShopkeeperSubMenu from "./ShopkeeperSubMenu";
 
@@ -14,24 +18,31 @@ function ShopItems() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllShopItems());
-    dispatch(getAllShops());
+    // dispatch(getAllShopItems());
+    // dispatch(getAllShops());
     dispatch(getAllItems());
     dispatch(getAllItemClasses());
+    if (token) {
+      const decoded = jwtDecode(token);
+      dispatch(shopOwnerShops(decoded._id));
+      // shops = shops.filter((shop) => shop.owner === decoded._id);
+    }
   }, []);
 
   const token = useSelector((state) => state.loginReducer.token);
   let shops = useSelector((state) => state.shopsReducer.shops);
   const [selectedShop, setSelectedShop] = useState("");
   let shopItems = useSelector((state) => state.shopItemsReducer.shopItems);
-  if (token) {
-    const decoded = jwtDecode(token);
-    shops = shops.filter((shop) => shop.owner === decoded._id);
-  }
+
   setTimeout(() => {
     if (selectedShop === "")
       if (shops.length != 0) setSelectedShop(shops[0]._id);
   }, 0);
+
+  useEffect(() => {
+    if (selectedShop === "") return;
+    dispatch(getShopItemsByShop(selectedShop));
+  }, [selectedShop]);
 
   const handleSearchData = (data) => {
     data = data.trim();
@@ -39,9 +50,6 @@ function ShopItems() {
   };
   const handleChange = (shopId) => {
     setSelectedShop(shopId);
-    const shop = shops.find((shop) => shop._id === shopId);
-
-    shopItems = shopItems.filter((shopItem) => shopItem.shop === shopId);
   };
 
   const handleDeleteShopItem = (data) => {

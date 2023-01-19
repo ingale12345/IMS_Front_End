@@ -2,6 +2,9 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const GENERATE_OTP = "GENERATE_OTP";
 
+export const COUNT_SHOPS = "COUNT_SHOPS";
+export const SHOP_PFS = "SHOP_PFS";
+
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const DELETE_USER = "DELETE_USER";
 export const UPDATE_USER = "UPDATE_USER";
@@ -9,10 +12,12 @@ export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
 export const ADD_USER = "ADD_USER";
 
 export const GET_ALL_SHOPS = "GET_ALL_SHOPS";
+export const SHOP_OWNER_SHOPS = "SHOP_OWNER_SHOPS";
 export const GET_ALL_SHOPS_BY_CATEGORY = "GET_ALL_SHOPS_BY_CATEGORY";
 export const ADD_SHOP = "ADD_SHOP";
 export const DELETE_SHOP = "DELETE_SHOP";
 export const UPDATE_SHOP = "UPDATE_SHOP";
+export const GET_SHOP_BY_ID = "GET_SHOP_BY_ID";
 
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";

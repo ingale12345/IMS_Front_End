@@ -7,6 +7,8 @@ import { useState } from "react";
 import ItemList from "./ItemList";
 import jwtDecode from "jwt-decode";
 import { addShopItem } from "../../actions/shopItemsAction";
+import { getShopById } from "../../actions/shopAction";
+import { getItemClassesByShopCategory } from "../../actions/itemClassesAction";
 
 function ShopItemForm(props) {
   const dispatch = useDispatch();
@@ -20,33 +22,41 @@ function ShopItemForm(props) {
     formState: { errors },
   } = useForm({}); //resolver: yupResolver(schema)
 
-  const shop = useSelector((state) => state.shopsReducer.shops).find(
-    (shop) => shop._id === shopId
-  );
+  const shop = useSelector((state) => state.shopsReducer.shop);
   let itemClasses = useSelector(
     (state) => state.itemClassesReducer.itemClasses
   );
   const token = useSelector((state) => state.loginReducer.token);
-  if (shop) {
-    itemClasses = itemClasses.filter(
-      (itemClass) => itemClass.category === shop.category
-    );
-  }
+  // if (shop) {
+  //   itemClasses = itemClasses.filter(
+  //     (itemClass) => itemClass.category === shop.category
+  //   );
+  // }
 
   //very IMP code
+
   useEffect(() => {
-    if (itemClasses.length) {
-      setItemClass(itemClasses[0]._id);
-    }
+    dispatch(getShopById(shopId));
   }, [shopId]);
 
-  setTimeout(() => {
-    if (itemClass === "") {
-      if (itemClasses.length) {
+  useEffect(() => {
+    if (itemClass === "")
+      if (itemClasses.length != 0) {
         setItemClass(itemClasses[0]._id);
       }
-    }
-  }, 500);
+  }, [itemClasses]);
+  useEffect(() => {
+    if (shopId === "") return;
+    dispatch(getItemClassesByShopCategory(shopId));
+  }, [shop]);
+
+  // setTimeout(() => {
+  //   if (itemClass === "") {
+  //     if (itemClasses.length) {
+  //       setItemClass(itemClasses[0]._id);
+  //     }
+  //   }
+  // }, 500);
   const onSubmitHandler = (data) => {
     console.log(data);
     const decoded = jwtDecode(token);
