@@ -7,12 +7,11 @@ function ShopsByShopkeeper(props) {
   const { handleClickShop, selectedShop } = props;
   let shops = useSelector((state) => state.shopsReducer.shops);
   const token = useSelector((state) => state.loginReducer.token);
-
   const decoded = jwtDecode(token);
   shops = shops.filter((shop) => shop.owner === decoded._id);
   useEffect(() => {
     if (selectedShop === "") {
-      handleClickShop(shops[0]._id);
+      handleClickShop(shops[0]?._id);
     }
   }, []);
   return (
@@ -23,11 +22,11 @@ function ShopsByShopkeeper(props) {
             onClick={() => handleClickShop(shop._id)}
             key={shop._id}
             className={`h-20 w-60 overflow-clip mx-2 bg-[#FAFAFA] inline-block  border-[3px] items-center rounded-2xl ${
-              selectedShop === shop._id ? "border-[#57B2BA]" : ""
+              selectedShop === shop && shop._id ? "border-[#57B2BA]" : ""
             } cursor-pointer`}
           >
             <div className=" flex justify-center items-center h-full font-nunito font-semibold">
-              {shop.name}
+              {shop && shop.name}
             </div>
           </div>
         );
@@ -35,5 +34,4 @@ function ShopsByShopkeeper(props) {
     </div>
   );
 }
-
 export default ShopsByShopkeeper;
