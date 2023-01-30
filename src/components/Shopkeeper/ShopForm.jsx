@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { getAllCategories } from "../../actions/categoriesAction";
 import { addShop, updateShop } from "../../actions/shopAction";
 import IndianState from "../../services/IndianStates";
 function ShopForm(props) {
@@ -18,6 +19,7 @@ function ShopForm(props) {
     reset,
   } = useForm({});
   useEffect(() => {
+    dispatch(getAllCategories());
     if (shop) {
       setValue("_id", shop._id);
       setValue("shop_name", shop.name);
